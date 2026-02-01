@@ -1,0 +1,38 @@
+id: taxi_scheduled
+namespace: zoomcamp
+
+description: |
+  Monthly schedule for taxi ingestion.
+  Use Kestra backfill to load 2021-01-01 .. 2021-07-31 for each trigger.
+
+inputs:
+  - id: taxi
+    type: SELECT
+    displayName: Select taxi type
+    values: [yellow, green]
+    defaults: green
+
+tasks:
+  - id: call_ingest
+    type: io.kestra.plugin.core.flow.Subflow
+    flowId: taxi_ingest
+    namespace: zoomcamp
+    inputs:
+      taxi: "{{inputs.taxi}}"
+      year: "{{trigger.date | date('yyyy')}}"
+      month: "{{trigger.date | date('MM')}}"
+
+triggers:
+  - id: green_schedule
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "0 9 1 * *"
+    timezone: America/New_York
+    inputs:
+      taxi: green
+
+  - id: yellow_schedule
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "0 10 1 * *"
+    timezone: America/New_York
+    inputs:
+      taxi: yellow

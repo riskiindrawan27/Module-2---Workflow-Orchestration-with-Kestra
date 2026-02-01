@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.pdb
+.pytest_cache/
+
+# Virtual environments
+.env/
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Data artifacts
+*.csv
+*.csv.gz
+
+# GCP credentials (never commit)
+service-account.json
+service_account.json
+*service-account*.json
+*service_account*.json

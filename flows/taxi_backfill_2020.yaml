@@ -1,0 +1,44 @@
+id: taxi_backfill_2020
+namespace: zoomcamp
+
+description: |
+  Convenience flow to ingest 2020-01..2020-12 for both green & yellow.
+  Useful to compute quiz answers for Q3 (yellow 2020 rows) and Q4 (green 2020 rows).
+
+tasks:
+  - id: foreach_combo
+    type: io.kestra.plugin.core.flow.ForEach
+    values:
+      - { taxi: green,  year: "2020", month: "01" }
+      - { taxi: green,  year: "2020", month: "02" }
+      - { taxi: green,  year: "2020", month: "03" }
+      - { taxi: green,  year: "2020", month: "04" }
+      - { taxi: green,  year: "2020", month: "05" }
+      - { taxi: green,  year: "2020", month: "06" }
+      - { taxi: green,  year: "2020", month: "07" }
+      - { taxi: green,  year: "2020", month: "08" }
+      - { taxi: green,  year: "2020", month: "09" }
+      - { taxi: green,  year: "2020", month: "10" }
+      - { taxi: green,  year: "2020", month: "11" }
+      - { taxi: green,  year: "2020", month: "12" }
+      - { taxi: yellow, year: "2020", month: "01" }
+      - { taxi: yellow, year: "2020", month: "02" }
+      - { taxi: yellow, year: "2020", month: "03" }
+      - { taxi: yellow, year: "2020", month: "04" }
+      - { taxi: yellow, year: "2020", month: "05" }
+      - { taxi: yellow, year: "2020", month: "06" }
+      - { taxi: yellow, year: "2020", month: "07" }
+      - { taxi: yellow, year: "2020", month: "08" }
+      - { taxi: yellow, year: "2020", month: "09" }
+      - { taxi: yellow, year: "2020", month: "10" }
+      - { taxi: yellow, year: "2020", month: "11" }
+      - { taxi: yellow, year: "2020", month: "12" }
+    tasks:
+      - id: ingest_one
+        type: io.kestra.plugin.core.flow.Subflow
+        flowId: taxi_ingest
+        namespace: zoomcamp
+        inputs:
+          taxi: "{{ taskrun.value is json ? fromJson(taskrun.value).taxi : taskrun.value.taxi }}"
+          year: "{{ taskrun.value is json ? fromJson(taskrun.value).year : taskrun.value.year }}"
+          month: "{{ taskrun.value is json ? fromJson(taskrun.value).month : taskrun.value.month }}"
