@@ -2,6 +2,10 @@
 
 This repo contains Kestra flows to ingest NYC TLC **green** and **yellow** taxi CSVs (DataTalksClub releases) into **GCS** and **BigQuery**.
 
+**Official homework reference (DE Zoomcamp 2026, Module 2):**
+
+- https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/cohorts/2026/02-workflow-orchestration/homework.md
+
 ## Quick Start (what to do)
 
 1. Start Kestra locally with Docker (Section 1.1)
