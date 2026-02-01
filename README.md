@@ -166,9 +166,44 @@ So for taxi=`green`, year=`2020`, month=`04` it renders to:
 In BigQuery, run:
 
 ```sql
-SELECT COUNT(*) AS cnt
-FROM `indra-gcp-lab.zoomcamp.yellow_tripdata`
-WHERE EXTRACT(YEAR FROM tpep_pickup_datetime) = 2020;
+WITH CTE AS (
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_01`
+   UNION ALL 
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_02`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_03`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_04`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_05`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_06`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_07`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_08`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_09`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_10`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_11`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2020_12`
+)
+   SELECT SUM(cnt) AS cnt FROM CTE;
 ```
 
 Choose the quiz option that equals `cnt`.
@@ -180,9 +215,44 @@ Choose the quiz option that equals `cnt`.
 In BigQuery, run:
 
 ```sql
-SELECT COUNT(*) AS cnt
-FROM `indra-gcp-lab.zoomcamp.green_tripdata`
-WHERE EXTRACT(YEAR FROM lpep_pickup_datetime) = 2020;
+WITH CTE AS (
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_01`
+   UNION ALL 
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_02`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_03`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_04`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_05`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_06`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_07`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_08`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_09`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_10`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_11`
+   UNION ALL
+   SELECT COUNT(*) AS cnt
+   FROM `indra-gcp-lab.zoomcamp.green_tripdata_2020_12`
+)
+SELECT SUM(cnt) AS cnt FROM CTE;
 ```
 
 Choose the quiz option that equals `cnt`.
