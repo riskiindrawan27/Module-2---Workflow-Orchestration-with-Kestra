@@ -264,10 +264,7 @@ Choose the quiz option that equals `cnt`.
 In BigQuery, run:
 
 ```sql
-SELECT COUNT(*) AS cnt
-FROM `indra-gcp-lab.zoomcamp.yellow_tripdata`
-WHERE DATE(tpep_pickup_datetime) >= '2021-03-01'
-  AND DATE(tpep_pickup_datetime) <  '2021-04-01';
+SELECT count(*) FROM `indra-gcp-lab.zoomcamp.yellow_tripdata_2021_03` ;
 ```
 
 Choose the quiz option that equals `cnt`.
